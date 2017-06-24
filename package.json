@@ -2,8 +2,9 @@
   "name": "application-using-express-generator-and-mongodb",
   "version": "0.0.0",
   "private": true,
+  "author": "Kaustubh Vinzanekar",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
