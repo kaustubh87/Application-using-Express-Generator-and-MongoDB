@@ -9,6 +9,10 @@ var sassMiddleware = require('node-sass-middleware');
 var index = require('./server/routes/index');
 var users = require('./server/routes/users');
 
+//Import comments controller
+
+var comments = require('./server/controllers/comments');
+
 // ODM with mongoose
 
 var mongoose = require('mongoose');
