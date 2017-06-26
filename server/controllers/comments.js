@@ -10,13 +10,36 @@ exports.list = function (req, res) {
             return res.send(400, { message: error })
     });
 
+    //Render results
+    res.render('comments', {
+        title: 'Comments Page',
+        comments: comments
+    });
 
-//Render results
-res.render('comments', {
-    title: 'Comments Page',
-    comments: comments
-});
+};
 
+//Create Comments
+
+exports.create = function (req, res) {
+
+    var comments = new Comments(req.body);
+    comments.user = req.user;
+    comments.save(function (error) {
+        if (error) {
+            return res.send(400, {
+                message: error
+            });
+        }
+        res.redirect('/comments');
+    });
+};
+
+//Comments authorization middleware
+
+exports.hasAuthorization = function(req,res,next){
+    if(req.isAuthenticated())
+    return next();
+    res.redirect('/login');
 };
 
 
