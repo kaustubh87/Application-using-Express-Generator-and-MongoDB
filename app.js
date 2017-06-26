@@ -83,6 +83,10 @@ app.use(flash());
 
 app.use('/', index);
 //app.use('/users', users);
+//Setting up comments route
+
+app.get('/comments', comments.hasAuthorization, comments.list );
+app.post('/comments', comments.hasAuthorization, comments.create);
 
 module.exports = app;
 
