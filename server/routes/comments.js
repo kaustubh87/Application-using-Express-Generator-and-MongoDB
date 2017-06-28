@@ -1,5 +1,7 @@
 //get Comments Model
 var Comments = require('../models/comments');
+var User = require('../models/users');
+var gravatar = require('gravatar');
 
 //List Comments
 exports.list = function (req, res) {
@@ -7,15 +9,17 @@ exports.list = function (req, res) {
 
     Comments.find().sort('-created').populate('user', 'local.email').exec(function (error, comments) {
         if (error)
-            return res.send(400, { message: error })
-    });
-
-    //Render results
+            return res.send(400, { message: error });
+            //Render results
     res.render('comments', {
         title: 'Comments Page',
-        comments: comments
+        comments: comments,
+        gravatar: gravatar.url(comments.email ,  {s: '80', r: 'x', d: 'retro'}, true)
     });
 
+    });
+
+    
 };
 
 //Create Comments
