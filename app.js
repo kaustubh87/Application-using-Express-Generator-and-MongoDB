@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./server/routes/index');
 var users = require('./server/routes/users');
 // Import comments controller
-var comments = require('./server/controllers/comments');
+var comments = require('./server/routes/comments');
 
 // ODM With Mongoose
 var mongoose = require('mongoose');
