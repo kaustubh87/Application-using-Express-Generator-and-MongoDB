@@ -16,7 +16,7 @@ var userSchema = mongoose.Schema({
 //Generate hash for the password entered by the user
 
 userSchema.methods.generateHash = function(password){
-    return bcrypt.hashSync(password, bcrypt.genSalt(8), null);
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 //Verify if password is valid
