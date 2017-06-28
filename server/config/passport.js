@@ -55,13 +55,13 @@ module.exports = function(passport) {
         // format to lower-case
         email = email.toLowerCase();
         // asynchronous
-        process.nextTick(function() {
+        
             // if the user is not already logged in:
             if (!req.user) {
                 User.findOne({ 'local.email' :  email }, function(err, user) {
                     // if errors
                     if (err)
-                    return done(err);
+                    return done(err, user);
                     // check email
                     if (user) {
                         return done(null, false, req.flash('signupMessage', 'Wohh! the email is already taken.'));
@@ -83,6 +83,6 @@ module.exports = function(passport) {
             } else {
                 return done(null, req.user);
             }
-        });
+        
     }));
 };
